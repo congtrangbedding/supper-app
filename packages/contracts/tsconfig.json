@@ -1,0 +1,6 @@
+{
+  "extends": "@ecommerce-os/config/tsconfig/base.json",
+  "include": [
+    "src"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "name": "ecommerce-os",
+  "packageManager": "pnpm@10.34.9",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @ecommerce-os/web dev",
+    "build": "pnpm --filter @ecommerce-os/web build",
+    "start": "pnpm --filter @ecommerce-os/web start",
+    "lint": "eslint . --max-warnings=0",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.0",
+    "eslint-config-next": "16.4.6",
+    "typescript": "~5.9.3",
+    "vitest": "^4.1.0"
+  }
+}

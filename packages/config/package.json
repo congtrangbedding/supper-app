@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "name": "@ecommerce-os/config",
+  "exports": {
+    "./tsconfig/base.json": "./tsconfig/base.json"
+  }
+}

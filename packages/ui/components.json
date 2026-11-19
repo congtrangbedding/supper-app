@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "../../apps/web/src/app/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true
+  },
+  "iconLibrary": "lucide",
+  "aliases": {
+    "components": "@ecommerce-os/ui/components",
+    "ui": "@ecommerce-os/ui/components",
+    "utils": "@ecommerce-os/ui/lib/utils",
+    "lib": "@ecommerce-os/ui/lib",
+    "hooks": "@ecommerce-os/ui/hooks"
+  }
+}

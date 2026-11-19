@@ -1,0 +1,11 @@
+node_modules/
+.next/
+next-env.d.ts
+# Hướng dẫn do next dev tự sinh
+apps/web/AGENTS.md
+*.tsbuildinfo
+coverage/
+.env*
+!.env.example
+.tools/
+*.log

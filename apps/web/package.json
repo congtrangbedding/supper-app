@@ -1,0 +1,29 @@
+{
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "name": "@ecommerce-os/web",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "next typegen && tsc --noEmit"
+  },
+  "dependencies": {
+    "@ecommerce-os/ui": "workspace:*",
+    "@ecommerce-os/contracts": "workspace:*",
+    "next": "16.4.6",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "lucide-react": "^0.577.0",
+    "@fontsource-variable/inter": "^5.2.0"
+  },
+  "devDependencies": {
+    "@ecommerce-os/config": "workspace:*",
+    "@tailwindcss/postcss": "^4.1.0",
+    "tailwindcss": "^4.1.0",
+    "@types/node": "^24",
+    "@types/react": "^19",
+    "@types/react-dom": "^19"
+  }
+}
