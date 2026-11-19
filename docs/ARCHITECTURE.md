@@ -45,6 +45,30 @@ Route: `/content/dashboard`, `/content/products`, `/content/products/new`, `/con
 
 Mã prototype trước đó của Codex (Image/Video Studio, batch, duyệt...) vượt phạm vi và được lưu để tham khảo tại `docs/archive-codex-content/`; thư mục này không được build, lint hay import.
 
+## AI Content Factory: UI-03 Xưởng sản xuất ảnh (chỉ frontend)
+
+Route `/content/images/production` (mã trong `apps/web/src/features/image-production`). Không có API, cơ sở dữ liệu, AI hay tệp ảnh được tạo ra. "Hoàn tất" nghĩa là mô phỏng xong, không phải ảnh đã render.
+
+| Thư mục | Nội dung |
+| --- | --- |
+| `types/production.ts` | Kiểu và schema zod: `ProductionFlow`, `FlowConfig`, 9 `ImageSlot`, trạng thái `DRAFT/READY/SIMULATING/DEMO_COMPLETED/DEMO_FAILED/CANCELLED`, giới hạn |
+| `services/presets.ts` | 5 preset: Standard E-commerce, Minimal Premium, Lifestyle Bedroom (chỉ 3:4), Material Focus, Promotional (chỉ 1:1) |
+| `services/flow-model.ts` | Logic thuần: cấu hình, kiểm tra, số ảnh dự kiến, chọn sản phẩm/phân loại, điều kiện sản xuất, ghép flow với sản phẩm, tìm kiếm, lọc, sắp xếp, phân trang |
+| `services/production-repository.ts` | `ProductionRepository` (giao diện thay được bằng API) và bản localStorage |
+| `services/simulation.ts`, `production-store.ts` | Bộ mô phỏng theo từng khung, store dùng chung (`useSyncExternalStore`) |
+| `components/` | Panel cấu hình, chọn sản phẩm, bảng/thẻ flow, drawer chi tiết, thư viện 9 khung, hộp thoại hàng loạt |
+
+- **Dữ liệu sản phẩm không bị nhân bản.** Flow chỉ giữ `productId`, `variantId` và một snapshot hiển thị (tên, mã, danh mục, SKU). Khi sản phẩm hoặc phân loại bị xóa, flow vẫn hiển thị bằng snapshot kèm cảnh báo và không thể chạy.
+- **Preset được chụp lại.** Flow lưu bản sao 9 khung và tên bộ template; sửa preset sau này không đổi flow cũ.
+- **Trạng thái Nháp/Sẵn sàng được suy ra** từ mức sẵn sàng hiện tại của sản phẩm (ảnh, phân loại, đặc tính đã xác minh), nên không bao giờ lỗi thời. Sản phẩm thiếu dữ liệu vẫn tạo được flow nhưng ở trạng thái Nháp, có lý do hiển thị và không chạy mô phỏng được.
+- **Trùng lặp.** Cùng sản phẩm và phân loại đã có flow thì không tạo lại; giao diện hỏi xác nhận để tạo dự án riêng. Gửi hai lần liên tiếp chỉ tạo một lần.
+- **Lưu trữ.** localStorage khóa `ecommerce-os:content-factory:production-flows:v1`, định dạng có phiên bản, kiểm tra từng bản ghi (bản ghi hỏng bị bỏ và có thông báo; JSON hỏng được đặt lại về trống). Tối đa 200 flow, 20 mục lịch sử mỗi flow. Không lưu byte ảnh hay object URL. Ghi sau thắng giữa các tab.
+- **Mô phỏng.** Mỗi khung là một nhịp (450 ms), 9 nhịp mỗi flow, tiến độ chỉ nằm trong bộ nhớ. Kết quả có tính xác định: khoảng 1/5 flow lỗi có chủ đích ở lần chạy đầu (tại khung 6) để minh họa Thử lại; lần sau thành công. Chỉ ghi vào localStorage khi bắt đầu và kết thúc.
+- **Tải lại hoặc rời trang khi đang mô phỏng:** mô phỏng không tiếp tục. Rời trang hoặc đóng workspace dừng mọi bộ đếm giờ và đặt flow thành `DEMO_FAILED` (lịch sử ghi "bị gián đoạn"); tải lại thì lần tải đầu của tab chuyển các flow còn `SIMULATING` thành `DEMO_FAILED`. Có thể Thử lại. Mở thêm tab mới khi tab khác đang mô phỏng sẽ làm các flow đó bị coi là gián đoạn.
+- Chế độ AI Assisted/Hybrid và nền do AI tạo chỉ lưu cấu hình, được gắn nhãn "chưa kết nối".
+- Bố cục: bảng từ 768 px, thẻ dưới 768 px; từ 1280 px panel cấu hình nằm bên trái (có thể ẩn, khi đó hiện thêm cột phụ), dưới 1280 px panel mở dạng sheet.
+- Chưa làm (thuộc UI-04 trở đi): trình chỉnh sửa khung ảnh, kho template, render thật, tích hợp AI.
+
 ## Dữ liệu và tác vụ nền trong tương lai
 
 PostgreSQL lưu metadata và lịch sử, Prisma quản lý truy cập và migration. Storage tương thích S3 lưu ảnh gốc, ảnh đã render và gói xuất. Giữ khóa đối tượng trong cơ sở dữ liệu, cấp quyền truy cập tệp theo gian hàng. Giữ ảnh gốc để đối chiếu màu sắc, hình dạng và họa tiết.

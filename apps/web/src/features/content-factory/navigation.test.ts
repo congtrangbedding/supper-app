@@ -21,8 +21,8 @@ describe("AI Content Factory navigation", () => {
     const slugs = allFactoryItems.map(i => i.slug);
     expect(new Set(slugs).size).toBe(slugs.length);
   });
-  it("only marks Dashboard and Product Studio routes as ready", () => {
-    expect(allFactoryItems.filter(i => i.status === "ready").map(i => i.slug)).toEqual(["dashboard", "products", "products/new"]);
+  it("only marks Dashboard, Product Studio and Image Production routes as ready", () => {
+    expect(allFactoryItems.filter(i => i.status === "ready").map(i => i.slug)).toEqual(["dashboard", "products", "products/new", "images/production"]);
   });
   it("backs every ready route with a page and every other route with the placeholder", () => {
     expect(existsSync(appDir("dashboard", "page.tsx"))).toBe(true);
@@ -30,6 +30,7 @@ describe("AI Content Factory navigation", () => {
     expect(existsSync(appDir("products", "new", "page.tsx"))).toBe(true);
     expect(existsSync(appDir("products", "[id]", "page.tsx"))).toBe(true);
     expect(existsSync(appDir("products", "[id]", "edit", "page.tsx"))).toBe(true);
+    expect(existsSync(appDir("images", "production", "page.tsx"))).toBe(true);
     expect(existsSync(appDir("[...slug]", "page.tsx"))).toBe(true);
     for (const slug of SOON_SLUGS) expect(existsSync(appDir(...slug.split("/"), "page.tsx")), slug).toBe(false);
   });
@@ -45,6 +46,7 @@ describe("AI Content Factory navigation", () => {
     expect(activeSlug("/content/products/abc/edit")).toBe("products");
     expect(activeSlug("/content/products/new")).toBe("products/new");
     expect(activeSlug("/content/jobs")).toBe("jobs");
+    expect(activeSlug("/content/images/production")).toBe("images/production");
     expect(activeSlug("/content/unknown")).toBeUndefined();
   });
   it("redirects legacy paths to existing destinations", () => {

@@ -31,7 +31,7 @@ export const factoryNavGroups: FactoryNavGroup[] = [
     id: "image",
     label: "Image Factory",
     items: [
-      soon("images/factory", "Xưởng sản xuất ảnh", "Cấu hình và chạy sản xuất ảnh hàng loạt từ sản phẩm."),
+      { slug: "images/production", title: "Xưởng sản xuất ảnh", status: "ready", description: "Cấu hình và lập kế hoạch sản xuất ảnh hàng loạt từ sản phẩm (mô phỏng)." },
       soon("images", "Dự án ảnh", "Danh sách các bộ ảnh đã tạo cho từng sản phẩm."),
       soon("images/editor", "Image Editor", "Chỉnh sửa chín khung ảnh của một bộ ảnh."),
       soon("image-templates", "Kho Templates ảnh", "Template bố cục cho ảnh 1200×1200 và 1200×1600.")
@@ -93,7 +93,7 @@ export const SOON_SLUGS = allFactoryItems.filter(item => item.status === "soon")
 export const legacyRedirects: Record<string, string> = {
   "content-factory": "dashboard",
   "content-factory/products": "products",
-  "content-factory/image-studio": "images/factory",
+  "content-factory/image-studio": "images/production",
   "content-factory/media": "media",
   "content-factory/templates": "image-templates",
   "content-factory/render-jobs": "jobs"

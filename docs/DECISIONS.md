@@ -15,4 +15,9 @@
 | Component radix bổ sung vào packages/ui | Thêm input, label, tabs, dialog, dropdown-menu theo mẫu shadcn để dùng chung. Quy tắc nền trong globals.css đưa vào @layer base để không đè utility Tailwind. |
 | Route /content/[...slug] cho mục Coming soon | Một trang trung thực cho mọi mục chưa làm; route tĩnh của Dashboard và sản phẩm được ưu tiên nên không xung đột. |
 
+| Repository flow sản xuất tách khỏi ProductRepository | Flow chỉ giữ tham chiếu và snapshot, không có kho sản phẩm thứ hai. Đổi sản phẩm không làm hỏng flow, đổi backend chỉ cần thay `ProductionRepository`. Đánh đổi: snapshot có thể cũ so với sản phẩm hiện tại, giao diện luôn ưu tiên dữ liệu sống khi còn sản phẩm. |
+| Trạng thái Nháp/Sẵn sàng suy ra, các trạng thái còn lại lưu | Tránh trạng thái lỗi thời khi sản phẩm được sửa. Trạng thái mô phỏng phải lưu vì không suy ra được. |
+| Mô phỏng chạy trong tab và dừng khi rời trang | Tránh bộ đếm giờ mồ côi và trạng thái giả. Đổi lại không có mô phỏng nền; phải thay bằng hàng đợi thật ở giai đoạn có backend. |
+| Thêm `sheet` vào packages/ui | Drawer chi tiết và panel cấu hình trên màn hình hẹp dùng chung, dựng trên Radix Dialog đã có. Không thêm phụ thuộc mới. |
+
 Hoãn quyết định nhà cung cấp AI, cơ chế xác thực, hạ tầng production, quota, schema dữ liệu và đồng bộ Shopee tới giai đoạn có yêu cầu thực tế.

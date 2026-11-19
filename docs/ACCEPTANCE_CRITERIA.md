@@ -21,6 +21,15 @@ Chỉ frontend, dữ liệu demo (xem ARCHITECTURE.md). Đã kiểm tra trên Ch
 - Bố cục: không tràn ngang ở 320, 390, 768, 1024 và 1440 px trên 7 trang; bảng ở từ 768 px, thẻ dưới 768 px; menu mobile mở bằng nút, đóng bằng Escape và sau khi chọn liên kết.
 - Chưa kiểm tra: trình đọc màn hình thật, bảng tương phản màu tự động, Firefox/Safari, thao tác kéo thả tệp thật (chỉ kiểm tra chọn tệp), thao tác sắp xếp lại ảnh bằng nút trong trình duyệt (có test logic).
 
+## AI Content Factory UI-03: Xưởng sản xuất ảnh (`/content/images/production`)
+
+Chỉ frontend; mô phỏng không tạo ảnh. Đã kiểm tra trên Chrome với bản production:
+
+- Chọn sản phẩm (tìm không dấu, chọn tất cả, chọn phân loại), cảnh báo thiếu dữ liệu kèm lý do, tạo 16 flow, bấm đúp chỉ tạo một lần, chặn trùng và hộp thoại xác nhận, tìm kiếm, lọc trạng thái/danh mục, sắp xếp, phân trang, chọn hàng loạt, đổi tỷ lệ và bộ template (báo flow bị bỏ qua), chạy mô phỏng hàng loạt, tiến độ, hủy, hoàn tất/lỗi, drawer chi tiết với 9 khung và lịch sử, sửa và lưu cấu hình, nhân bản, xóa có xác nhận.
+- Tải lại giữa lúc mô phỏng và rời trang: không còn flow SIMULATING, flow giữ nguyên, chuyển DEMO_FAILED. Sản phẩm bị xóa: flow còn lại kèm cảnh báo. localStorage hỏng: đặt lại kèm thông báo.
+- Không tràn ngang ở 320, 390, 768, 1024, 1440 px (trang, sheet cấu hình, drawer). Các route UI-01/02 vẫn 200.
+- Chưa kiểm tra: trình đọc màn hình thật, tương phản tự động, Firefox/Safari, thao tác bàn phím đầy đủ trong sheet, nhiều tab đồng thời.
+
 ## Kiểm tra tự động
 
 Chạy từ gốc theo thứ tự `pnpm install`, `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm build`. Vitest kiểm tra HTML trang chủ, số ứng dụng và nhãn trạng thái, liên kết, danh mục đường dẫn và ghi đè lớp CSS dùng chung. Typecheck bao phủ web, UI và contracts.

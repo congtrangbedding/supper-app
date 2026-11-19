@@ -34,7 +34,7 @@ Phase 01 chạy với cấu hình mặc định. Nếu muốn tùy chỉnh môi 
 
 - `apps/web/src/app` chứa App Router, dashboard, trang trạng thái và CSS.
 - `apps/web/src/components` chứa khung điều hướng, header và vùng nội dung.
-- pps/web/src/features chứa các tính năng: content-factory (điều hướng, dashboard) và products (Product Studio, dữ liệu demo lưu trên trình duyệt). Chạy pnpm dev rồi mở http://localhost:3000/content/dashboard. Chức năng chưa làm hiển thị Coming soon.
+- pps/web/src/features chứa các tính năng: content-factory (điều hướng, dashboard), products (Product Studio, dữ liệu demo lưu trên trình duyệt) và image-production (Xưởng sản xuất ảnh tại /content/images/production: cấu hình, flow 9 khung, mô phỏng, chưa tạo ảnh thật). Chạy pnpm dev rồi mở http://localhost:3000/content/dashboard. Chức năng chưa làm hiển thị Coming soon.
 - `apps/web/src/lib` chứa danh mục điều hướng và ánh xạ biểu tượng.
 - `packages/ui` cung cấp các thành phần shadcn/ui dùng chung.
 - `packages/contracts` khai báo kiểu dữ liệu dùng qua ranh giới package.

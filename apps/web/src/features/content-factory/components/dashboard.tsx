@@ -12,7 +12,7 @@ import { DemoBadge, PageHeader } from "./page-header";
 
 const entries = [
   { slug: "products", title: "Product Studio", text: "Quản lý sản phẩm, SKU, đặc tính đã xác minh và ảnh gốc.", icon: Package },
-  { slug: "images/factory", title: "Image Factory", text: "Sản xuất bộ ảnh bán hàng từ sản phẩm.", icon: Images },
+  { slug: "images/production", title: "Xưởng sản xuất ảnh", text: "Lập kế hoạch bộ ảnh 9 khung cho từng sản phẩm (mô phỏng).", icon: Images },
   { slug: "videos/factory", title: "Video Factory", text: "Sản xuất video ngắn từ sản phẩm.", icon: Clapperboard },
   { slug: "media", title: "Media Library", text: "Kho tài nguyên ảnh và video của gian hàng.", icon: FolderOpen }
 ] as const;
@@ -28,7 +28,8 @@ const status = [
   { done: true, label: "Điều hướng AI Content Factory" },
   { done: true, label: "Dashboard" },
   { done: true, label: "Product Studio: danh sách, thêm, sửa, xóa, chi tiết" },
-  { done: false, label: "Image Factory và Image Editor" },
+  { done: true, label: "Xưởng sản xuất ảnh: cấu hình, flow, mô phỏng (chưa tạo ảnh thật)" },
+  { done: false, label: "Image Editor" },
   { done: false, label: "Video Factory và Storyboard Editor" },
   { done: false, label: "Media Library, Batch Production, Render Jobs" },
   { done: false, label: "Duyệt nội dung và Hàng đợi đăng bài" },
@@ -62,7 +63,7 @@ export function FactoryDashboard() {
         <h2 id="entry-title" className="mb-3 text-base font-semibold">Điểm vào sản xuất</h2>
         <ul className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           {entries.map(({ slug, title, text, icon: Icon }) => {
-            const live = slug === "products";
+            const live = slug === "products" || slug === "images/production";
             return (
               <li key={slug}>
                 <Link href={factoryHref(slug)} className="flex h-full flex-col gap-2 rounded-lg border bg-card p-4 transition-colors hover:border-primary/50 focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none">
