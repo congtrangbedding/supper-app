@@ -19,7 +19,7 @@ export default function Home() {
     <section className="feature" aria-labelledby="factory-title">
       <div className="feature-copy"><Badge className="feature-status"><i/> Đang phát triển</Badge>
         <h2 id="factory-title">AI Image Factory</h2><p>Từ ảnh sản phẩm thật đến bộ ảnh bán hàng đồng nhất cho từng gian hàng.</p>
-        <Button asChild className="studio-button"><Link href="/content-factory/image-studio">Khám phá mô-đun <ArrowRight/></Link></Button>
+        <Button asChild className="studio-button"><Link href="/content/dashboard">Khám phá mô-đun <ArrowRight/></Link></Button>
       </div>
       <div className="art" aria-hidden="true"><div className="back-sheet"/><div className="photo-sheet"><div className="photo"/><div className="proof"><ScanLine size={13}/><span>STUDIO / 01</span><div className="swatches"/></div></div><div className="cross">+</div></div>
     </section>

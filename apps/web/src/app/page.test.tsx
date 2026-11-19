@@ -10,7 +10,7 @@ describe("workspace shell", () => {
     expect(applications).toHaveLength(5);
     for (const app of applications) expect(html).toContain('href="/' + app.slug + '"');
     expect(html.match(/Coming soon/g)).toHaveLength(4);
-    expect(html).toContain('href="/content-factory/image-studio"');
+    expect(html).toContain('href="/content/dashboard"');
   });
   it("resolves every destination uniquely and rejects unknown paths", () => {
     expect(new Set(destinations.map(page => page.path)).size).toBe(destinations.length);

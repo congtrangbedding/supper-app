@@ -1,4 +1,4 @@
-# Nhật ký quyết định
+﻿# Nhật ký quyết định
 
 | Quyết định | Lý do và đánh đổi |
 | --- | --- |
@@ -10,5 +10,9 @@
 | Giữ ESLint 9.39.5 | Plugin React trong preset Next.js hiện khai báo hỗ trợ tới ESLint 9. Registry báo nhánh 9 đã hết hỗ trợ. Nâng bản khi toàn bộ preset hỗ trợ ESLint 10. |
 | Dùng Windows-native cho checkout hiện tại | Tránh thay đổi máy hoặc chuyển thư mục. Với checkout Linux riêng trong tương lai, ưu tiên Ubuntu WSL2, filesystem Linux và VS Code Remote WSL. |
 | Thư viện ảnh và font cục bộ | Dashboard và build hoạt động độc lập với CDN. Sharp là phụ thuộc gián tiếp của Next.js, chưa có pipeline xử lý ảnh nghiệp vụ. |
+| Product Studio dùng repository demo (localStorage + IndexedDB) | Giao diện chỉ phụ thuộc giao diện `ProductRepository` nên có thể thay bằng API thật ở giai đoạn 02. localStorage chỉ giữ metadata; ảnh nằm ở IndexedDB với giới hạn rõ ràng. Dữ liệu không chia sẻ giữa người dùng. |
+| Thêm react-hook-form, @hookform/resolvers, zod, playwright-core | RHF và zod xử lý form nhiều mục và kiểm tra dữ liệu đọc từ localStorage. playwright-core (devDependency) phục vụ kiểm tra trình duyệt bằng Chrome cài sẵn. |
+| Component radix bổ sung vào packages/ui | Thêm input, label, tabs, dialog, dropdown-menu theo mẫu shadcn để dùng chung. Quy tắc nền trong globals.css đưa vào @layer base để không đè utility Tailwind. |
+| Route /content/[...slug] cho mục Coming soon | Một trang trung thực cho mọi mục chưa làm; route tĩnh của Dashboard và sản phẩm được ưu tiên nên không xung đột. |
 
 Hoãn quyết định nhà cung cấp AI, cơ chế xác thực, hạ tầng production, quota, schema dữ liệu và đồng bộ Shopee tới giai đoạn có yêu cầu thực tế.

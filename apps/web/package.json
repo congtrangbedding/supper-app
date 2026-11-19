@@ -10,20 +10,23 @@
     "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {
-    "@ecommerce-os/ui": "workspace:*",
     "@ecommerce-os/contracts": "workspace:*",
+    "@ecommerce-os/ui": "workspace:*",
+    "@fontsource-variable/inter": "^5.2.0",
+    "@hookform/resolvers": "^7.0.7",
+    "lucide-react": "^0.577.0",
     "next": "16.4.6",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "lucide-react": "^0.577.0",
-    "@fontsource-variable/inter": "^5.2.0"
+    "react-hook-form": "^7.92.0",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@ecommerce-os/config": "workspace:*",
     "@tailwindcss/postcss": "^4.1.0",
-    "tailwindcss": "^4.1.0",
     "@types/node": "^24",
     "@types/react": "^19",
-    "@types/react-dom": "^19"
+    "@types/react-dom": "^19",
+    "tailwindcss": "^4.1.0"
   }
 }

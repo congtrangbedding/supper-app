@@ -1,4 +1,4 @@
-# Ecommerce OS
+﻿# Ecommerce OS
 
 Không gian vận hành nội bộ cho nhiều gian hàng Shopee và TikTok tại Việt Nam. Phase 01 cung cấp giao diện tổng quan và nền tảng phát triển. AI Image Factory thuộc AI Content Factory là mô-đun đầu tiên trong lộ trình.
 
@@ -34,6 +34,7 @@ Phase 01 chạy với cấu hình mặc định. Nếu muốn tùy chỉnh môi 
 
 - `apps/web/src/app` chứa App Router, dashboard, trang trạng thái và CSS.
 - `apps/web/src/components` chứa khung điều hướng, header và vùng nội dung.
+- pps/web/src/features chứa các tính năng: content-factory (điều hướng, dashboard) và products (Product Studio, dữ liệu demo lưu trên trình duyệt). Chạy pnpm dev rồi mở http://localhost:3000/content/dashboard. Chức năng chưa làm hiển thị Coming soon.
 - `apps/web/src/lib` chứa danh mục điều hướng và ánh xạ biểu tượng.
 - `packages/ui` cung cấp các thành phần shadcn/ui dùng chung.
 - `packages/contracts` khai báo kiểu dữ liệu dùng qua ranh giới package.

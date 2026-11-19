@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { factoryHref, legacyRedirects } from "@/features/content-factory/navigation";
 import { ArrowLeft, Layers3 } from "lucide-react";
 import { Badge } from "@ecommerce-os/ui/components/badge";
 import { Button } from "@ecommerce-os/ui/components/button";
@@ -12,6 +13,7 @@ export function generateStaticParams() {
 export default async function SectionPage({ params }: { params: Promise<{ section: string[] }> }) {
   const page = getDestination((await params).section.join("/"));
   if (!page) notFound();
+  if (legacyRedirects[page.path]) redirect(factoryHref(legacyRedirects[page.path]));
   return <section className="empty"><Layers3 size={34}/><Badge variant="secondary">{page.status === "coming-soon" ? "Coming soon" : "Đang phát triển"}</Badge>
     <h1>{page.title}</h1><p>{page.description}</p><p>Chức năng đang được chuẩn bị.</p>
     <Button asChild variant="outline"><Link href="/"><ArrowLeft/> Về tổng quan</Link></Button></section>;

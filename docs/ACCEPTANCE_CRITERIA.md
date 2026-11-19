@@ -1,4 +1,4 @@
-# Nghiệm thu Phase 01
+﻿# Nghiệm thu Phase 01
 
 ## Checklist
 
@@ -11,6 +11,15 @@
 - [x] Lint, typecheck, test và build production thành công.
 - [x] Khởi động ứng dụng và kiểm tra HTTP thành công.
 - [x] Tài liệu tiếng Việt, tệp môi trường mẫu an toàn, thay đổi chưa được commit.
+
+## AI Content Factory UI-01 và UI-02 (`/content/*`)
+
+Chỉ frontend, dữ liệu demo (xem ARCHITECTURE.md). Đã kiểm tra trên Chrome với bản production:
+
+- Route: Dashboard, danh sách, thêm, chi tiết, sửa và 15 trang Coming soon đều trả 200 khi truy cập trực tiếp; `/content` và `/content-factory*` chuyển hướng 307; slug lạ trả 404.
+- Luồng thật: tìm kiếm không dấu, lọc danh mục/trạng thái, sắp xếp, chọn tất cả và chọn hàng loạt, tạo sản phẩm kèm biến thể, SKU trùng, đặc tính xác minh, kiểm tra ảnh (loại, dung lượng), xem trước ảnh, lưu và hiển thị lại sau khi tải lại trang, sửa, hộp thoại thay đổi chưa lưu, xóa có xác nhận, xóa hàng loạt, khôi phục dữ liệu mẫu, phục hồi khi localStorage hỏng, menu thao tác bằng bàn phím.
+- Bố cục: không tràn ngang ở 320, 390, 768, 1024 và 1440 px trên 7 trang; bảng ở từ 768 px, thẻ dưới 768 px; menu mobile mở bằng nút, đóng bằng Escape và sau khi chọn liên kết.
+- Chưa kiểm tra: trình đọc màn hình thật, bảng tương phản màu tự động, Firefox/Safari, thao tác kéo thả tệp thật (chỉ kiểm tra chọn tệp), thao tác sắp xếp lại ảnh bằng nút trong trình duyệt (có test logic).
 
 ## Kiểm tra tự động
 

@@ -1,0 +1,14 @@
+"use client";
+import {useState} from "react";
+import {Blend,Clapperboard} from "lucide-react";
+import {Button} from "@ecommerce-os/ui/components/button";
+import {Field,Heading,Select,Tag} from "./ui";
+import {useDemo,updateDemo} from "./repository";
+export function Brand(){
+ const db=useDemo();const [brand,set]=useState(db.brand),[message,notify]=useState("");
+ return <><Heading title="Bộ nhận diện" description="Tinh chỉnh thương hiệu và xem trước cách hiển thị trên nội dung."/><div className="split"><form className="studio-panel rail" onSubmit={e=>{e.preventDefault();if(!brand.name.trim())return notify("Nhập tên thương hiệu.");updateDemo(s=>({...s,brand}));notify("Đã lưu bộ nhận diện.");}}><Field label="Tên thương hiệu"><input required value={brand.name} onChange={e=>set({...brand,name:e.target.value})}/></Field><Field label="Màu chính"><input type="color" value={brand.primary} onChange={e=>set({...brand,primary:e.target.value})}/></Field><Field label="Màu phụ"><input type="color" value={brand.secondary} onChange={e=>set({...brand,secondary:e.target.value})}/></Field><Select label="Phông chữ" value={brand.font} options={["Georgia","Arial","monospace"]} onChange={font=>set({...brand,font})}/><Button>Lưu nhận diện</Button><p role="status">{message}</p></form><div className="brand-proof" style={{background:brand.secondary,color:brand.primary,fontFamily:brand.font}}><span style={{background:brand.primary,color:brand.secondary}}>{brand.name.trim().slice(0,1)}</span><strong>{brand.name}</strong><small>Xem trước logo chữ</small></div></div></>;
+}
+export function AISettings(){
+ const db=useDemo(),[ai,set]=useState(db.ai),[message,notify]=useState("");
+ return <><Heading title="Cấu hình AI" description="Thiết lập tùy chọn mô phỏng cho các dự án nội dung."/><div className="split">{[["Dịch vụ tạo ảnh",Blend],["Dịch vụ video dự kiến",Clapperboard]].map(([title,IconValue])=>{const Icon=IconValue as typeof Blend;return <div className="studio-panel stack" key={String(title)}><Icon/><h2>{String(title)}</h2><Tag>Not connected</Tag></div>;})}</div><form className="studio-panel stack" onSubmit={e=>{e.preventDefault();updateDemo(s=>({...s,ai}));notify("Đã lưu cấu hình demo.");}}><h2>Cấu hình mặc định</h2><Select label="Chế độ" options={["Tiết kiệm","Cân bằng","Chất lượng"]} value={ai.preset} onChange={preset=>set({...ai,preset})}/><div className="form-grid"><Select label="Phong cách ảnh" options={["Tự nhiên","Studio","Cận cảnh"]} value={ai.imageStyle} onChange={imageStyle=>set({...ai,imageStyle})}/><Select label="Phong cách video" options={["Điện ảnh","Tự nhiên","Tối giản"]} value={ai.videoStyle} onChange={videoStyle=>set({...ai,videoStyle})}/></div><div className="estimate"><small>Ước tính minh họa cho 1 ảnh</small><strong>{ai.preset==="Tiết kiệm"?"1":ai.preset==="Cân bằng"?"2":"4"} tín dụng</strong><p>Chi phí thực tế trong demo · 0 ₫</p></div><div><Button>Lưu cấu hình</Button></div><p role="status">{message}</p></form></>;
+}
